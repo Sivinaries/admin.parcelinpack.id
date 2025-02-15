@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Product</title>
+    <title>Set Tag</title>
     @include('layout.head')
     <link href="//cdn.datatables.net/2.0.2/css/dataTables.dataTables.min.css" rel="stylesheet" />
 </head>
@@ -19,10 +19,10 @@
             <div class='w-full rounded-xl bg-white h-fit mx-auto'>
                 <div class="p-3">
                     <div class="flex justify-between">
-                        <h1 class="font-extrabold text-3xl">Product</h1>
+                        <h1 class="font-extrabold text-3xl">Set Tag</h1>
                         <a class="p-2 bg-blue-500 rounded-xl text-white hover:text-black text-center px-10"
-                            href="{{ route('addproduct') }}">Add
-                            product</a>
+                            href="{{ route('addsubtag') }}">Set
+                            tag</a>
                     </div>
                 </div>
                 <div class="p-2">
@@ -31,25 +31,23 @@
                             <thead class="w-full">
                                 <th>No</th>
                                 <th>Date</th>
-                                <th>Kategori</th>
-                                <th>Name</th>
-                                <th>Desc</th>
+                                <th>Sub Product</th>
+                                <th>Tag</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
                                 @php
                                     $no = 1;
                                 @endphp
-                                @foreach ($product as $item)
+                                @foreach ($subtag as $item)
                                     <tr class="border-2">
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $item->created_at }}</td>
-                                        <td>{{ $item->kategori->kategori }}</td>
-                                        <td>{{ $item->product }}</td>
-                                        <td>{{ $item->desc }}</td>
+                                        <td>{{ $item->subproduct->subproduct }}</td>
+                                        <td>{{ $item->tag->tag }}</td>
                                         <td class="flex gap-2">
                                             <div class="p-2 px-10 w-full bg-blue-500 rounded-xl">
-                                                <a href="{{ route('editproduct', ['id' => $item->id]) }}">
+                                                <a href="{{ route('editkategori', ['id' => $item->id]) }}">
                                                     <h1 class=" text-white hover:text-black  text-center">
                                                         Edit</h1>
                                                 </a>
@@ -59,7 +57,7 @@
                                                     <form
                                                         class=" text-white hover:text- text-center"
                                                         method="post"
-                                                        action="{{ route('destroyproduct', ['id' => $item->id]) }}">
+                                                        action="{{ route('destroykategori', ['id' => $item->id]) }}">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit">Delete</button>

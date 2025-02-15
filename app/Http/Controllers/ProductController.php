@@ -3,63 +3,81 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Models\Kategori;
 use Illuminate\Http\Request;
 
 class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $product = Product::all();
+
+        if (request()->is('api/*')) {
+            return response()->json($product);
+        }
+
+        return view("product", compact("product"));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        $kategori = Kategori::all();
+
+        return view("addproduct", compact('kategori'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(Request $request)
     {
-        //
+        $product = $request->validate([
+            'kategori_id' => 'required',
+            'product' => 'required',
+            'desc' => 'required',
+        ]);
+
+        Product::create($product);
+
+        return redirect(route('product'))->with('success', 'Product Berhasil Dibuat !');
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Product $product)
+    public function show($id)
     {
-        //
+        $product = Product::findOrFail($id);
+        return response()->json(['product' => $product], 200);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Product $product)
+    public function edit($id)
     {
-        //
+        $product = Product::find($id);
+        $kategori = Kategori::all();
+        return view('editproduct', [
+            'product' => $product,
+            'kategori' => $kategori,
+    ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'kategori_id' => 'required',
+            'product' => 'required',
+            'desc' => 'required',
+        ]);
+
+        $data = $request->only([
+            'kategori_id',
+            'product',
+            'desc',
+    ]);
+
+        Product::where('id', $id)->update($data);
+
+        return redirect(route('product'))->with('success', 'Product Berhasil Diupdate !');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        //
+        Product::destroy($id);
+
+        return redirect(route('product'))->with('success', 'Product Berhasil Dihapus !');
     }
 }

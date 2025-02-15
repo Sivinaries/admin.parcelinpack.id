@@ -9,7 +9,7 @@ class TagController extends Controller
 {
     public function index()
     {
-        $tag = Tag::all();
+        $tag = Tag::with('subproducts')->get();
 
         if (request()->is('api/*')) {
             return response()->json($tag);
@@ -53,9 +53,9 @@ class TagController extends Controller
             'tag' => 'required',
         ]);
 
-        $tagdata = $request->only(['tag']);
+        $data = $request->only(['tag']);
 
-        Tag::where('id', $id)->update($tagdata);
+        Tag::where('id', $id)->update($data);
 
         return redirect(route('tag'))->with('success', 'Tag Berhasil Diupdate !');
     }

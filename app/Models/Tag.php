@@ -6,12 +6,19 @@ use Illuminate\Database\Eloquent\Model;
 
 class Tag extends Model
 {
-    protected $fillable = [
+    protected $fillable = 
+    [
         'tag',
     ];
 
-    public function product()
+    public function subTags()
     {
-        return $this->belongsToMany(Product::class, 'product_tags');
+        return $this->hasMany(SubTag::class);
     }
+
+    public function subproducts()
+    {
+        return $this->belongsToMany(Subproduct::class, 'sub_tags');
+    }
+
 }

@@ -23,7 +23,7 @@
                             <h1 class="text-2xl text-white font-bold">
 
                             </h1>
-                            <h1 class="text-xl font-extrabold text-white text-right">Posts</h1>
+                            <h1 class="text-xl font-extrabold text-white text-right">Portfolio</h1>
                         </div>
                     </a>
                     <!-- card2 -->
@@ -32,7 +32,7 @@
                             <h1 class="text-2xl text-white font-bold">
 
                             </h1>
-                            <h1 class="text-xl font-extrabold text-white text-right">Projects</h1>
+                            <h1 class="text-xl font-extrabold text-white text-right">Layanan</h1>
                         </div>
                     </a>
                 </div>

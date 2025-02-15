@@ -31,7 +31,7 @@
                             <thead class="w-full">
                                 <th>No</th>
                                 <th>Date</th>
-                                <th>Nama Tag</th>
+                                <th>Tag</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>

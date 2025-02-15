@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>Add Category</title>
+    <title>Add Product</title>
     @include('layout.head')
 </head>
 
@@ -17,17 +17,28 @@
         <div class="p-6">
             <div class='w-full bg-white rounded-xl h-fit mx-auto'>
                 <div class="p-3 text-center">
-                    <h1 class="font-extrabold text-3xl">Add category</h1>
+                    <h1 class="font-extrabold text-3xl">Add product</h1>
                 </div>
                 <div class="p-6">
-                    <form class="space-y-3" method="post" action="{{ route('createkategori') }}" enctype="multipart/form-data">
+                    <form class="space-y-3" method="post" action="{{ route('createproduct') }}"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('post')
                         <div class="space-y-2">
-                            <label class="font-semibold text-black">Nama category:</label>
+                            <label class="font-semibold text-black">Nama kategori:</label>
+                            <select id="kategori" name="kategori_id"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full" required>
+                                <option></option>
+                                @foreach ($kategori as $cat)
+                                    <option value="{{ $cat->id }}">{{ $cat->kategori }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-semibold text-black">Nama product:</label>
                             <input type="text"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
-                                id="kategori" name="kategori" placeholder="Category" required>
+                                id="product" name="product" placeholder="Product" required>
                         </div>
                         <div class="space-y-2">
                             <label class="font-semibold text-black">Description:</label>
@@ -43,4 +54,5 @@
         </div>
     </main>
 </body>
+
 </html>

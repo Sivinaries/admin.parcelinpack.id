@@ -73,8 +73,22 @@
                     </li>
                     <li class="p-4 mx-2">
                         <div class="ml-16 md:ml-14">
-                            <a href="">
+                            <a href="{{ route('product') }}">
                                 <h1 class="text-gray-500 hover:text-black text-base font-normal">Produk</h1>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="p-4 mx-2">
+                        <div class="ml-16 md:ml-14">
+                            <a href="{{ route('subproduct') }}">
+                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Sub Produk</h1>
+                            </a>
+                        </div>
+                    </li>
+                    <li class="p-4 mx-2">
+                        <div class="ml-16 md:ml-14">
+                            <a href="{{ route('subtag') }}">
+                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Set Tag</h1>
                             </a>
                         </div>
                     </li>

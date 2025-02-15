@@ -6,26 +6,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    protected $fillable = [
-        'name',
-        'price',
-        'min',
-        'img1',
-        'img2',
-        'img3',
-        'desc1',
-        'desc2',
-        'desc3',
+    protected $fillable = 
+    [
+        'product',
+        'desc',
+        'kategori_id',
     ];
-
-    public function tags()
-    {
-        return $this->belongsToMany(Tag::class, 'product_tags');
-    }
 
     public function kategori()
     {
         return $this->belongsTo(Kategori::class);
     }
+
+    public function subproducts()
+    {
+        return $this->hasMany(Subproduct::class);
+    }
+
 
 }

@@ -27,6 +27,7 @@ class KategoriController extends Controller
     {
         $kategori = $request->validate([
             'kategori' => 'required',
+            'desc' => 'required',
         ]);
 
         Kategori::create($kategori);
@@ -50,11 +51,15 @@ class KategoriController extends Controller
     {
         $request->validate([
             'kategori' => 'required',
+            'desc' => 'required',
         ]);
 
-        $kategoridata = $request->only(['kategori']);
+        $data = $request->only([
+            'kategori',
+            'desc',
+        ]);
 
-        Kategori::where('id', $id)->update($kategoridata);
+        Kategori::where('id', $id)->update($data);
 
         return redirect(route('kategori'))->with('success', 'Category Berhasil Diupdate !');
     }
