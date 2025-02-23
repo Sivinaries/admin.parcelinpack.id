@@ -26,12 +26,16 @@
                         <div class="space-y-2">
                             <label class="font-semibold text-black">Nama kategori:</label>
                             <select id="kategori" name="kategori_id"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full" required>
-                                <option></option>
-                                @foreach ($kategori as $cat)
-                                    <option value="{{ $cat->id }}">{{ $cat->kategori }}</option>
-                                @endforeach
-                            </select>
+                            class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full" required>
+                            <option></option>
+                            @foreach ($kategori as $cat)
+                                <option value="{{ $cat->id }}" 
+                                    {{ old('kategori_id', $product->kategori_id) == $cat->id ? 'selected' : '' }}>
+                                    {{ $cat->kategori }}
+                                </option>
+                            @endforeach
+                        </select>
+                        
                         </div>
                         <div class="space-y-2">
                             <label class="font-semibold text-black">Nama product:</label>
@@ -39,6 +43,14 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
                                 id="product" name="product" value="{{ $product->product }}" required>
                         </div>
+                        <div class="space-y-2">
+                            <label class="font-semibold text-black">Description:</label>
+                            <textarea class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full h-44" type='text'
+                                name="desc" id="desc" required>
+                                {{ $product->desc }}
+                            </textarea>
+                        </div>
+
                         <button type="submit"
                             class="bg-blue-500 text-white p-2 w-fit hover:text-black rounded-lg">Submit</button>
                     </form>

@@ -42,20 +42,20 @@ class PagesController extends Controller
         $query = $request->input('search');
 
         //POST SEARCH
-        $postResults = Post::where('judul', 'LIKE', '%' . $query . '%')
-            ->orWhere('content', 'LIKE', '%' . $query . '%')
-            ->get();
+        // $postResults = Post::where('judul', 'LIKE', '%' . $query . '%')
+        //     ->orWhere('content', 'LIKE', '%' . $query . '%')
+        //     ->get();
 
         //PROJECT SEARCH
-        $projectResults = Project::where('project', 'LIKE', '%' . $query . '%')
-            ->orWhere('description', 'LIKE', '%' . $query . '%')
-            ->get();
+        // $projectResults = Project::where('project', 'LIKE', '%' . $query . '%')
+        //     ->orWhere('description', 'LIKE', '%' . $query . '%')
+        //     ->get();
 
         //USER SEARCH
-        $userResults = User::where('name', 'LIKE', '%' . $query . '%')
-            ->orWhere('email', 'LIKE', '%' . $query . '%')
-            ->get();
+        // $userResults = User::where('name', 'LIKE', '%' . $query . '%')
+        //     ->orWhere('email', 'LIKE', '%' . $query . '%')
+        //     ->get();
 
-        return view('search', compact('postResults', 'projectResults', 'userResults'));
+        // return view('search', compact('postResults', 'projectResults', 'userResults'));
     }
 }

@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Subproduct;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class SubproductController extends Controller
 {
     public function index()
     {
-        $subproducts = Subproduct::with('tags')->get();
+        $subproducts = Cache::remember('subproducts', now()->addMinutes(60), function () {
+            return Subproduct::with('tags')->get();
+        });
 
         if (request()->is('api/*')) {
             return response()->json($subproducts);
@@ -31,21 +34,28 @@ class SubproductController extends Controller
         $subproduct = $request->validate([
             'product_id' => 'required',
             'subproduct' => 'required',
-            'price' => 'required',
-            'min' => 'required',
-            'img1' => 'required',
-            'img2' => 'required',
-            'img3' => 'required',
+            'price' => 'required|numeric',
+            'min' => 'required|integer',
+            'img1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img3' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'desc1' => 'required',
             'desc2' => 'required',
             'desc3' => 'required',
         ]);
+    
+        // Simpan gambar ke penyimpanan (storage)
+        $subproduct['img1'] = $request->file('img1')->store('images', 'public');
+        $subproduct['img2'] = $request->file('img2')->store('images', 'public');
+        $subproduct['img3'] = $request->file('img3')->store('images', 'public');
+    
+        Cache::forget('subproducts');
 
         Subproduct::create($subproduct);
-
-        return redirect(route('subproduct'))->with('success', 'Subproduct Berhasil Dibuat !');
+    
+        return redirect(route('subproduct'))->with('success', 'Subproduct Berhasil Dibuat!');
     }
-
+    
     public function show($id)
     {
         $subproduct = Subproduct::with(['product'])->findOrFail($id);
@@ -54,8 +64,10 @@ class SubproductController extends Controller
 
     public function edit($id)
     {
+        $product = Product::all();
         $subproduct = Subproduct::find($id);
-        return view('editsubproduct', ['subproduct' => $subproduct]);
+        
+        return view('editsubproduct', compact('subproduct', 'product'));
     }
 
     public function update(Request $request, $id)
@@ -86,6 +98,8 @@ class SubproductController extends Controller
             'desc3',
         ]);
 
+        Cache::forget('subproducts');
+
         Subproduct::where('id', $id)->update($data);
 
         return redirect(route('subproduct'))->with('success', 'Subproduct Berhasil Diupdate !');
@@ -94,6 +108,8 @@ class SubproductController extends Controller
     public function destroy($id)
     {
         Subproduct::destroy($id);
+
+        Cache::forget('subproducts');
 
         return redirect(route('subproduct'))->with('success', 'Subproduct Berhasil Dihapus !');
     }

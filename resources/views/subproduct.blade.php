@@ -20,9 +20,14 @@
                 <div class="p-3">
                     <div class="flex justify-between">
                         <h1 class="font-extrabold text-3xl">Sub Product</h1>
-                        <a class="p-2 bg-blue-500 rounded-xl text-white hover:text-black text-center px-10"
+                        <div>
+                        <a class="p-2 bg-blue-500 rounded-xl text-white hover:text-black text-center px-5"
                             href="{{ route('addsubproduct') }}">Add
                             subproduct</a>
+                        <a class="p-2 bg-yellow-500 rounded-xl text-white hover:text-black text-center px-10"
+                            href="{{ route('subtag') }}">Set
+                            tag</a>
+                        </div>
                     </div>
                 </div>
                 <div class="p-2">
@@ -58,7 +63,7 @@
                                         </td>
                                         <td class="flex gap-2">
                                             <div class="p-2 px-10 w-full bg-blue-500 rounded-xl">
-                                                <a href="{{ route('editproduct', ['id' => $item->id]) }}">
+                                                <a href="{{ route('editsubproduct', ['id' => $item->id]) }}">
                                                     <h1 class=" text-white hover:text-black  text-center">
                                                         Edit</h1>
                                                 </a>
@@ -66,7 +71,7 @@
                                             @if (auth()->user()->level == 'Admin')
                                                 <div class="p-2 px-10 w-full  rounded-xl black bg-red-500">
                                                     <form class=" text-white hover:text- text-center" method="post"
-                                                        action="{{ route('destroyproduct', ['id' => $item->id]) }}">
+                                                        action="{{ route('destroysubproduct', ['id' => $item->id]) }}">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit">Delete</button>

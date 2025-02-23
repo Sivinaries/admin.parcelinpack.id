@@ -5,12 +5,15 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class ProductController extends Controller
 {
     public function index()
     {
-        $product = Product::all();
+        $product = Cache::remember('products', now()->addMinutes(60), function () {
+            return Product::all();
+        });
 
         if (request()->is('api/*')) {
             return response()->json($product);
@@ -34,6 +37,8 @@ class ProductController extends Controller
             'desc' => 'required',
         ]);
 
+        Cache::forget('products');
+
         Product::create($product);
 
         return redirect(route('product'))->with('success', 'Product Berhasil Dibuat !');
@@ -52,7 +57,7 @@ class ProductController extends Controller
         return view('editproduct', [
             'product' => $product,
             'kategori' => $kategori,
-    ]);
+        ]);
     }
 
     public function update(Request $request, $id)
@@ -67,7 +72,9 @@ class ProductController extends Controller
             'kategori_id',
             'product',
             'desc',
-    ]);
+        ]);
+
+        Cache::forget('products');
 
         Product::where('id', $id)->update($data);
 
@@ -77,6 +84,8 @@ class ProductController extends Controller
     public function destroy($id)
     {
         Product::destroy($id);
+
+        Cache::forget('products');
 
         return redirect(route('product'))->with('success', 'Product Berhasil Dihapus !');
     }

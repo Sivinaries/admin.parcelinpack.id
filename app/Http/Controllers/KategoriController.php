@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use App\Models\Kategori;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class KategoriController extends Controller
 {
     public function index()
     {
-        $kategori = Kategori::all();
+        $kategori =  Cache::remember('kategoris', now()->addMinutes(60), function () {
+            return Kategori::all();
+        });
 
         if (request()->is('api/*')) {
             return response()->json($kategori);
@@ -29,6 +32,8 @@ class KategoriController extends Controller
             'kategori' => 'required',
             'desc' => 'required',
         ]);
+
+        Cache::forget('kategoris');
 
         Kategori::create($kategori);
 
@@ -58,6 +63,8 @@ class KategoriController extends Controller
             'kategori',
             'desc',
         ]);
+    
+        Cache::forget('kategoris');
 
         Kategori::where('id', $id)->update($data);
 
@@ -67,6 +74,8 @@ class KategoriController extends Controller
     public function destroy($id)
     {
         Kategori::destroy($id);
+
+        Cache::forget('kategoris');
 
         return redirect(route('kategori'))->with('success', 'Category Berhasil Dihapus !');
     }

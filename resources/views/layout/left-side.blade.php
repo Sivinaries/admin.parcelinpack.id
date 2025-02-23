@@ -86,13 +86,6 @@
                         </div>
                     </li>
                     <li class="p-4 mx-2">
-                        <div class="ml-16 md:ml-14">
-                            <a href="{{ route('subtag') }}">
-                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Set Tag</h1>
-                            </a>
-                        </div>
-                    </li>
-                    <li class="p-4 mx-2">
                         <div class="flex space-x-4">
                             <div class="bg-amber-600 p-2 rounded-xl">
                                 <i class="material-icons">settings</i>
@@ -114,7 +107,7 @@
                     @endif
                     <li class="p-4 mx-2">
                         <div class="ml-16 md:ml-14">
-                            <a href="https://custompedia.agency/" target="blank">
+                            <a href="https://parcelinpack.id/" target="blank">
                                 <h1 class="text-gray-500 hover:text-black text-base font-normal">Website</h1>
                             </a>
                         </div>
