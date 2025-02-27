@@ -12,9 +12,8 @@ class SubTagController extends Controller
 {
     public function index()
     {
-        $subtag = Cache::remember('subtags', now()->addMinutes(60), function () {
-            return SubTag::with('subproduct', 'tag')->get();
-        });
+        $subtag = Cache::remember('subtags', now()->addMinutes(60), fn () => 
+        SubTag::with('subproduct', 'tag')->orderBy('created_at')->get());
 
         if (request()->is('api/*')) {
             return response()->json($subtag);
@@ -40,6 +39,8 @@ class SubTagController extends Controller
 
         Cache::forget('subtags');
 
+        Cache::forget('subproducts');
+
         SubTag::create($subtag);
 
         return redirect(route('subtag'))->with('success', 'Set Tag Berhasil Dibuat !');
@@ -52,19 +53,14 @@ class SubTagController extends Controller
         return response()->json(['subtag' => $subtag], 200);
     }
 
-    public function edit(SubTag $subTag) 
+    public function destroy($id)
     {
+        SubTag::destroy($id);
 
-        
-    }
+        Cache::forget('subtags');
 
-    public function update(Request $request, SubTag $subTag)
-    {
-        //
-    }
+        Cache::forget('subproducts');
 
-    public function destroy(SubTag $subTag)
-    {
-        //
+        return redirect(route('subtag'))->with('success', 'Subtag Berhasil Dihapus !');
     }
 }

@@ -11,9 +11,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $product = Cache::remember('products', now()->addMinutes(60), function () {
-            return Product::all();
-        });
+        $product = Cache::remember('products', now()->addMinutes(60), fn () => 
+        Product::orderBy('created_at'));
 
         if (request()->is('api/*')) {
             return response()->json($product);

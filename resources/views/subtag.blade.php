@@ -45,19 +45,13 @@
                                         <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->subproduct->subproduct }}</td>
                                         <td>{{ $item->tag->tag }}</td>
-                                        <td class="flex gap-2">
-                                            <div class="p-2 px-10 w-full bg-blue-500 rounded-xl">
-                                                <a href="{{ route('editkategori', ['id' => $item->id]) }}">
-                                                    <h1 class=" text-white hover:text-black  text-center">
-                                                        Edit</h1>
-                                                </a>
-                                            </div>
+                                        <td class="">
                                             @if (auth()->user()->level == 'Admin')
                                                 <div class="p-2 px-10 w-full  rounded-xl black bg-red-500">
                                                     <form
                                                         class=" text-white hover:text- text-center"
                                                         method="post"
-                                                        action="{{ route('destroykategori', ['id' => $item->id]) }}">
+                                                        action="{{ route('destroysubtag', ['id' => $item->id]) }}">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit">Delete</button>

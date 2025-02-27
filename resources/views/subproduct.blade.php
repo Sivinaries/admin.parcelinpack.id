@@ -51,7 +51,7 @@
                                     <tr class="border-2">
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $item->created_at }}</td>
-                                        <td>{{ $item->product->product }}</td>
+                                        <td>{{ $item->product?->product }}</td>
                                         <td>{{ $item->subproduct }}</td>
                                         <td>{{ $item->min }}</td>
                                         <td>{{ $item->price }}</td>

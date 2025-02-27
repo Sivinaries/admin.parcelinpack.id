@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class UserController extends Controller
 {
     public function index()
     {
-        $user = User::all();
+        $user = Cache::remember('users', now()->addMinutes(60), fn() =>  
+        User::where('level', 'User')->orderBy('created_at')->get());
 
         if (request()->is('api/*')) {
             return response()->json($user);
@@ -47,7 +49,6 @@ class UserController extends Controller
 
         $user = User::find($id);
         return view('edituser', ['user' => $user]);
-
     }
 
     public function update(Request $request, $id)
@@ -61,7 +62,6 @@ class UserController extends Controller
         User::where('id', $id)->update($userdata);
 
         return redirect(route('user'))->with('success', 'User Berhasil Diupdate !');
-
     }
 
     public function destroy($id)
@@ -69,7 +69,5 @@ class UserController extends Controller
         User::destroy($id);
 
         return redirect(route('user'))->with('success', 'User Berhasil Dihapus !');
-
     }
-
 }

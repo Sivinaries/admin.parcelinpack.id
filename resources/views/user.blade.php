@@ -40,13 +40,13 @@
                                 @php
                                     $no = 1;
                                 @endphp
-                                @foreach ($user as $user)
+                                @foreach ($user as $item)
                                     <tr class="border-2">
                                         <td>{{ $no++ }}</td>
-                                        <td>{{ $user->created_at }}</td>
-                                        <td>{{ $user->name }}</td>
-                                        <td>{{ $user->level }}</td>
-                                        <td>{{ $user->email }}</td>
+                                        <td>{{ $item->created_at }}</td>
+                                        <td>{{ $item->name }}</td>
+                                        <td>{{ $item->level }}</td>
+                                        <td>{{ $item->email }}</td>
                                         <td class="">
                                             <form
                                                 class="p-1 w-full text-white hover:text-black bg-red-500 rounded-xl text-center"

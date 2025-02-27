@@ -4,12 +4,14 @@ namespace App\Http\Controllers;
 
 use App\Models\Tag;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 
 class TagController extends Controller
 {
     public function index()
     {
-        $tag = Tag::with('subproducts')->get();
+        $tag = Cache::remember('tags', now()->addMinutes(60), fn () => 
+        Tag::with('subproducts')->orderBy('created_at')->get());
 
         if (request()->is('api/*')) {
             return response()->json($tag);
@@ -28,6 +30,8 @@ class TagController extends Controller
         $tag = $request->validate([
             'tag' => 'required',
         ]);
+
+        Cache::forget('tags');
 
         Tag::create($tag);
 
@@ -55,6 +59,8 @@ class TagController extends Controller
 
         $data = $request->only(['tag']);
 
+        Cache::forget('tags');
+
         Tag::where('id', $id)->update($data);
 
         return redirect(route('tag'))->with('success', 'Tag Berhasil Diupdate !');
@@ -63,6 +69,8 @@ class TagController extends Controller
     public function destroy($id)
     {
         Tag::destroy($id);
+
+        Cache::forget('tags');
 
         return redirect(route('tag'))->with('success', 'Tag Berhasil Dihapus !');
     }

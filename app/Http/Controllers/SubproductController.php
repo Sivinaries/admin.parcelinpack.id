@@ -11,9 +11,8 @@ class SubproductController extends Controller
 {
     public function index()
     {
-        $subproducts = Cache::remember('subproducts', now()->addMinutes(60), function () {
-            return Subproduct::with('tags')->get();
-        });
+        $subproducts = Cache::remember('subproducts', now()->addMinutes(60), fn() => 
+        Subproduct::with('tags')->orderBy('created_at')->get());
 
         if (request()->is('api/*')) {
             return response()->json($subproducts);
@@ -25,7 +24,7 @@ class SubproductController extends Controller
     public function create()
     {
         $product = Product::all();
-        
+
         return view("addsubproduct", compact('product'));
     }
 
@@ -43,19 +42,19 @@ class SubproductController extends Controller
             'desc2' => 'required',
             'desc3' => 'required',
         ]);
-    
+
         // Simpan gambar ke penyimpanan (storage)
-        $subproduct['img1'] = $request->file('img1')->store('images', 'public');
-        $subproduct['img2'] = $request->file('img2')->store('images', 'public');
-        $subproduct['img3'] = $request->file('img3')->store('images', 'public');
-    
+        $subproduct['img1'] = $request->file('img1')->storeAs('images', $request->file('img1')->getClientOriginalName(), 'public');
+        $subproduct['img2'] = $request->file('img2')->storeAs('images', $request->file('img2')->getClientOriginalName(), 'public');
+        $subproduct['img3'] = $request->file('img3')->storeAs('images', $request->file('img3')->getClientOriginalName(), 'public');
+
         Cache::forget('subproducts');
 
         Subproduct::create($subproduct);
-    
+
         return redirect(route('subproduct'))->with('success', 'Subproduct Berhasil Dibuat!');
     }
-    
+
     public function show($id)
     {
         $subproduct = Subproduct::with(['product'])->findOrFail($id);
@@ -66,7 +65,7 @@ class SubproductController extends Controller
     {
         $product = Product::all();
         $subproduct = Subproduct::find($id);
-        
+
         return view('editsubproduct', compact('subproduct', 'product'));
     }
 

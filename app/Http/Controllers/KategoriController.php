@@ -10,9 +10,8 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $kategori =  Cache::remember('kategoris', now()->addMinutes(60), function () {
-            return Kategori::all();
-        });
+        $kategori =  Cache::remember('kategoris', now()->addMinutes(60), fn () => 
+        Kategori::orderBy('created_at')->get());
 
         if (request()->is('api/*')) {
             return response()->json($kategori);
