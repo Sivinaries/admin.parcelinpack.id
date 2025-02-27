@@ -71,20 +71,20 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
-Route::middleware('auth:sanctum')->group(function () {
-    //USER
-    Route::get('/user', [UserController::class, 'index'])->name('user');
-    Route::get('/adduser', [UserController::class, 'create'])->name('adduser');
-    Route::post('/createuser', [UserController::class, 'store'])->name('createuser');
-    Route::get('/edituser/{id}', [UserController::class, 'edit'])->name('edituser');
-    Route::put('/updateuser/{id}', [UserController::class, 'update'])->name('updateuser');
-    Route::delete('/destroyuser/{id}', [UserController::class, 'destroy'])->name('destroyuser');
-    //PAGES
-    Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
-    Route::get('/content', [PagesController::class, 'content'])->name('content');
-    Route::get('/setting', [PagesController::class, 'setting'])->name('setting');
-    Route::get('/profil', [PagesController::class, 'profil'])->name('profil');
-    Route::get('/search', [PagesController::class, 'search'])->name('search');
-    //LOGOUT
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-});
+// Route::middleware('auth:sanctum')->group(function () {
+//     //USER
+//     Route::get('/user', [UserController::class, 'index'])->name('user');
+//     Route::get('/adduser', [UserController::class, 'create'])->name('adduser');
+//     Route::post('/createuser', [UserController::class, 'store'])->name('createuser');
+//     Route::get('/edituser/{id}', [UserController::class, 'edit'])->name('edituser');
+//     Route::put('/updateuser/{id}', [UserController::class, 'update'])->name('updateuser');
+//     Route::delete('/destroyuser/{id}', [UserController::class, 'destroy'])->name('destroyuser');
+//     //PAGES
+//     Route::get('/dashboard', [PagesController::class, 'dashboard'])->name('dashboard');
+//     Route::get('/content', [PagesController::class, 'content'])->name('content');
+//     Route::get('/setting', [PagesController::class, 'setting'])->name('setting');
+//     Route::get('/profil', [PagesController::class, 'profil'])->name('profil');
+//     Route::get('/search', [PagesController::class, 'search'])->name('search');
+//     //LOGOUT
+//     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+// });

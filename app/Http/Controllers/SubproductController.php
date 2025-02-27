@@ -11,7 +11,7 @@ class SubproductController extends Controller
 {
     public function index()
     {
-        $subproducts = Cache::remember('subproducts', now()->addMinutes(60), fn() => 
+        $subproducts = Cache::remember('subproducts', now()->addMinutes(60), fn() =>
         Subproduct::with('tags')->orderBy('created_at')->get());
 
         if (request()->is('api/*')) {
@@ -71,39 +71,37 @@ class SubproductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $subproduct = $request->validate([
             'product_id' => 'required',
             'subproduct' => 'required',
-            'price' => 'required',
-            'min' => 'required',
-            'img1' => 'required',
-            'img2' => 'required',
-            'img3' => 'required',
+            'price' => 'required|numeric',
+            'min' => 'required|integer',
+            'img1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img3' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'desc1' => 'required',
             'desc2' => 'required',
             'desc3' => 'required',
         ]);
 
-        $data = $request->only([
-            'product_id',
-            'subproduct',
-            'price',
-            'min',
-            'img1',
-            'img2',
-            'img3',
-            'desc1',
-            'desc2',
-            'desc3',
-        ]);
+        $subproductModel = Subproduct::findOrFail($id);
+
+        if ($request->hasFile('img1')) {
+            $subproduct['img1'] = $request->file('img1')->storeAs('images', $request->file('img1')->getClientOriginalName(), 'public');
+        }
+        if ($request->hasFile('img2')) {
+            $subproduct['img2'] = $request->file('img2')->storeAs('images', $request->file('img2')->getClientOriginalName(), 'public');
+        }
+        if ($request->hasFile('img3')) {
+            $subproduct['img3'] = $request->file('img3')->storeAs('images', $request->file('img3')->getClientOriginalName(), 'public');
+        }
 
         Cache::forget('subproducts');
 
-        Subproduct::where('id', $id)->update($data);
+        $subproductModel->update($subproduct);
 
-        return redirect(route('subproduct'))->with('success', 'Subproduct Berhasil Diupdate !');
+        return redirect(route('subproduct'))->with('success', 'Subproduct Berhasil Diupdate!');
     }
-
     public function destroy($id)
     {
         Subproduct::destroy($id);
