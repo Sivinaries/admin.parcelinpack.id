@@ -29,7 +29,7 @@ class ProjectController extends Controller
     {
         $project = $request->validate([
             'project' => 'required',
-            'img1' => 'required',
+            'img1' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'img2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'desc1' => 'required',
             'desc2' => 'required',
@@ -61,8 +61,8 @@ class ProjectController extends Controller
     {
         $project = $request->validate([
             'project' => 'required',
-            'img1' => 'required',
-            'img2' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img1' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'img2' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'desc1' => 'required',
             'desc2' => 'required',
         ]);

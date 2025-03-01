@@ -50,7 +50,7 @@
                                         <td class="">
                                             <form
                                                 class="p-1 w-full text-white hover:text-black bg-red-500 rounded-xl text-center"
-                                                method="post" action="{{ route('destroyuser', ['id' => $user->id]) }}">
+                                                method="post" action="{{ route('destroyuser', ['id' => $item->id]) }}">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="submit">Delete</button>
