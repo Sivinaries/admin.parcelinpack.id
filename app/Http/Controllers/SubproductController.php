@@ -12,7 +12,7 @@ class SubproductController extends Controller
     public function index()
     {
         $subproducts = Cache::remember('subproducts', now()->addMinutes(60), fn() =>
-        Subproduct::with('tags')->orderBy('created_at')->get());
+        Subproduct::with('tags', 'product')->orderBy('created_at')->get());
 
         if (request()->is('api/*')) {
             return response()->json($subproducts);

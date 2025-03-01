@@ -20,7 +20,9 @@
                     <h1 class="font-extrabold text-3xl">Edit product</h1>
                 </div>
                 <div class="p-6">
-                    <form class="space-y-3" method="post" action="{{ route('updateproduct', ['id' => $product->id]) }}">
+                    <form class="space-y-3" method="post" action="{{ route('updateproduct', ['id' => $product->id]) }}"
+                        enctype="multipart/form-data"
+                        >
                         @csrf
                         @method('put')
                         <div class="space-y-2">
@@ -35,13 +37,19 @@
                                 </option>
                             @endforeach
                         </select>
-                        
                         </div>
                         <div class="space-y-2">
                             <label class="font-semibold text-black">Nama product:</label>
                             <input type="text"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
-                                id="product" name="product" value="{{ $product->product }}" required>
+                                id="product" name="product" value="{{ $product->product }}">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="font-semibold text-black">Gambar:</label>
+                            <img src="{{ asset('storage/' . $product->img) }}" alt="Gambar" class="w-64 h-44 mx-auto ">
+                            <input type="file"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
+                                id="img" name="img">
                         </div>
                         <div class="space-y-2">
                             <label class="font-semibold text-black">Description:</label>

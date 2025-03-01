@@ -11,8 +11,8 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $product = Cache::remember('products', now()->addMinutes(60), fn () => 
-        Product::orderBy('created_at')->get());
+        $product = Cache::remember('products', now()->addMinutes(60), fn() =>
+        Product::with('kategori')->orderBy('created_at')->get());
 
         if (request()->is('api/*')) {
             return response()->json($product);
@@ -33,8 +33,11 @@ class ProductController extends Controller
         $product = $request->validate([
             'kategori_id' => 'required',
             'product' => 'required',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'desc' => 'required',
         ]);
+
+        $product['img'] = $request->file('img')->storeAs('products', $request->file('img')->getClientOriginalName(), 'public');
 
         Cache::forget('products');
 
@@ -61,21 +64,22 @@ class ProductController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $product = $request->validate([
             'kategori_id' => 'required',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'product' => 'required',
             'desc' => 'required',
         ]);
 
-        $data = $request->only([
-            'kategori_id',
-            'product',
-            'desc',
-        ]);
+        $productModel = Product::findOrFail($id);
+
+        if ($request->hasFile('img')) {
+            $product['img'] = $request->file('img')->storeAs('products', $request->file('img')->getClientOriginalName(), 'public');
+        }
 
         Cache::forget('products');
 
-        Product::where('id', $id)->update($data);
+        $productModel->update($product);
 
         return redirect(route('product'))->with('success', 'Product Berhasil Diupdate !');
     }
