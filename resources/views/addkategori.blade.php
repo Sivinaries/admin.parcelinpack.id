@@ -30,6 +30,12 @@
                                 id="kategori" name="kategori" placeholder="Category" required>
                         </div>
                         <div class="space-y-2">
+                            <label class="font-semibold text-black">Gambar:</label>
+                            <input type="file"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
+                                id="img" name="img" required>
+                        </div>
+                        <div class="space-y-2">
                             <label class="font-semibold text-black">Description:</label>
                             <textarea class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full h-44" type='text'
                                 name="desc" id="desc">

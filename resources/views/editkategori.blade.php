@@ -21,7 +21,9 @@
                 </div>
                 <div class="p-6">
                     <form class="space-y-3" method="post"
-                        action="{{ route('updatekategori', ['id' => $kategori->id]) }}">
+                        action="{{ route('updatekategori', ['id' => $kategori->id]) }}"
+                        enctype="multipart/form-data"
+                        >
                         @csrf
                         @method('put')
                         <div class="space-y-2">
@@ -31,14 +33,21 @@
                                 id="kategori" name="kategori" value="{{ $kategori->kategori }}" required>
                         </div>
                         <div class="space-y-2">
+                            <label class="font-semibold text-black">Gambar:</label>
+                            <img src="{{ asset('storage/' . $kategori->img) }}" alt="Gambar" class="w-64 h-44 mx-auto ">
+                            <input type="file"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
+                                id="img" name="img">
+                        </div>
+                        <div class="space-y-2">
                             <label class="font-semibold text-black">Description:</label>
                             <textarea class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full h-44" type='text'
-                                name="desc" id="desc" required>
+                                name="desc" id="desc">
                                 {{ $kategori->desc }}
                             </textarea>
                         </div>
                         <button type="submit"
-                            class="bg-blue-500 text-white p-2 w-fit hover:text-black rounded-lg">Submit</button>
+                            class="bg-blue-500  text-white p-4 w-full hover:text-black rounded-lg">Submit</button>
                     </form>
                 </div>
             </div>

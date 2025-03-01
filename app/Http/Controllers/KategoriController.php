@@ -10,7 +10,7 @@ class KategoriController extends Controller
 {
     public function index()
     {
-        $kategori =  Cache::remember('kategoris', now()->addMinutes(60), fn () => 
+        $kategori =  Cache::remember('kategoris', now()->addMinutes(60), fn() =>
         Kategori::orderBy('created_at')->get());
 
         if (request()->is('api/*')) {
@@ -29,8 +29,11 @@ class KategoriController extends Controller
     {
         $kategori = $request->validate([
             'kategori' => 'required',
+            'img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'desc' => 'required',
         ]);
+
+        $kategori['img'] = $request->file('img')->storeAs('kategoris', $request->file('img')->getClientOriginalName(), 'public');
 
         Cache::forget('kategoris');
 
@@ -53,19 +56,21 @@ class KategoriController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $kategori = $request->validate([
             'kategori' => 'required',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'desc' => 'required',
         ]);
 
-        $data = $request->only([
-            'kategori',
-            'desc',
-        ]);
-    
+        $kategoriModel = Kategori::findOrFail($id);
+
+        if ($request->hasFile('img')) {
+            $kategori['img'] = $request->file('img')->storeAs('kategoris', $request->file('img')->getClientOriginalName(), 'public');
+        }
+
         Cache::forget('kategoris');
 
-        Kategori::where('id', $id)->update($data);
+        $kategoriModel->update($kategori);
 
         return redirect(route('kategori'))->with('success', 'Category Berhasil Diupdate !');
     }

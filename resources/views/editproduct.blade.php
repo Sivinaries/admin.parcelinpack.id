@@ -52,7 +52,7 @@
                         </div>
 
                         <button type="submit"
-                            class="bg-blue-500 text-white p-2 w-fit hover:text-black rounded-lg">Submit</button>
+                            class="bg-blue-500  text-white p-4 w-full hover:text-black rounded-lg">Submit</button>
                     </form>
                 </div>
             </div>

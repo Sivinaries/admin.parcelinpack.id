@@ -102,6 +102,7 @@ class SubproductController extends Controller
 
         return redirect(route('subproduct'))->with('success', 'Subproduct Berhasil Diupdate!');
     }
+    
     public function destroy($id)
     {
         Subproduct::destroy($id);
