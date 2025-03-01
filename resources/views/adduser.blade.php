@@ -53,8 +53,8 @@
                             <select
                                 class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
                                 id="level" name="level" required>
-                                <option value="admin">Admin</option>
-                                <option value="writer">Writer</option>
+                                <option value="Admin">Admin</option>
+                                <option value="Writer">Writer</option>
                                 </select>
                         </div>
                         <button type="submit"

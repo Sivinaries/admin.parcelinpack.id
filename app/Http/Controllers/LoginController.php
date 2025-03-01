@@ -11,12 +11,12 @@ use Illuminate\Support\Facades\Validator;
 
 class LoginController extends Controller
 {
-    function index()
+    public function index()
     {
         return view('login');
     }
 
-    function authenticate(Request $request): RedirectResponse
+    public function authenticate(Request $request): RedirectResponse
     {
         $credentials = $request->validate([
             'email' => ['required', 'email'],
@@ -54,7 +54,7 @@ class LoginController extends Controller
             'level' => $request->level
         ]);
 
-        $user->save(); 
+        $user->save();
 
         $token = $user->createToken('auth_token')->plainTextToken;
 
