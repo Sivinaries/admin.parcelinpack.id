@@ -8,6 +8,7 @@ use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\SubTagController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\ProjectsController;
 use App\Http\Controllers\CategoriesController;
@@ -32,6 +33,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/setting', [PagesController::class, 'setting'])->name('setting');
     Route::get('/profil', [PagesController::class, 'profil'])->name('profil');
     Route::get('/search', [PagesController::class, 'search'])->name('search');
+    //PROJECT
+    Route::get('/project', [ProjectController::class, 'index'])->name('project');
+    Route::get('/addproject', [ProjectController::class, 'create'])->name('addproject');
+    Route::post('/createproject', [ProjectController::class, 'store'])->name('createproject');
+    Route::get('/editproject/{id}', [ProjectController::class, 'edit'])->name('editproject');
+    Route::put('/updateproject/{id}', [ProjectController::class, 'update'])->name('updateproject');
+    Route::delete(uri: '/destroyproject/{id}', action: [ProjectController::class, 'destroy'])->name('destroyproject');
     //KATEGORI
     Route::get('/kategori', [KategoriController::class, 'index'])->name('kategori');
     Route::get('/addkategori', [KategoriController::class, 'create'])->name('addkategori');

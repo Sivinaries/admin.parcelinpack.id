@@ -19,14 +19,11 @@
             <div class='w-full rounded-xl bg-white h-fit mx-auto'>
                 <div class="p-3">
                     <div class="flex justify-between">
-                        <h1 class="font-extrabold text-3xl">Sub Product</h1>
+                        <h1 class="font-extrabold text-3xl">Project</h1>
                         <div>
-                        <a class="p-2 bg-blue-500 rounded-xl text-white hover:text-black text-center px-5"
-                            href="{{ route('addsubproduct') }}">Add
-                            subproduct</a>
-                        <a class="p-2 bg-yellow-500 rounded-xl text-white hover:text-black text-center px-10"
-                            href="{{ route('subtag') }}">Set
-                            tag</a>
+                            <a class="p-2 bg-blue-500 rounded-xl text-white hover:text-black text-center px-5"
+                                href="{{ route('addproject') }}">Add
+                                project</a>
                         </div>
                     </div>
                 </div>
@@ -36,34 +33,23 @@
                             <thead class="w-full">
                                 <th>No</th>
                                 <th>Date</th>
-                                <th>Product</th>
-                                <th>Name</th>
-                                <th>Min</th>
-                                <th>Price</th>
-                                <th>Tag</th>
+                                <th>Project</th>
+                                <th>Desc</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
                                 @php
                                     $no = 1;
                                 @endphp
-                                @foreach ($subproducts as $item)
+                                @foreach ($project as $item)
                                     <tr class="border-2">
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $item->created_at }}</td>
-                                        <td>{{ $item->product?->product }}</td>
-                                        <td>{{ $item->subproduct }}</td>
-                                        <td>{{ $item->min }}</td>
-                                        <td>{{ $item->price }}</td>
-                                        <td>
-                                            @foreach ($item->tags as $tag)
-                                                <span
-                                                    class="bg-gray-200 text-black p-2">{{ $tag->tag }}</span>
-                                            @endforeach
-                                        </td>
+                                        <td>{{ $item->project }}</td>
+                                        <td>{{ $item->desc1 }}</td>
                                         <td class="flex gap-2">
                                             <div class="p-2 px-10 w-full bg-blue-500 rounded-xl">
-                                                <a href="{{ route('editsubproduct', ['id' => $item->id]) }}">
+                                                <a href="{{ route('editproject', ['id' => $item->id]) }}">
                                                     <h1 class=" text-white hover:text-black  text-center">
                                                         Edit</h1>
                                                 </a>
@@ -71,7 +57,7 @@
                                             @if (auth()->user()->level == 'Admin')
                                                 <div class="p-2 px-10 w-full  rounded-xl black bg-red-500">
                                                     <form class=" text-white hover:text- text-center" method="post"
-                                                        action="{{ route('destroysubproduct', ['id' => $item->id]) }}">
+                                                        action="{{ route('destroyproject', ['id' => $item->id]) }}">
                                                         @csrf
                                                         @method('delete')
                                                         <button type="submit">Delete</button>

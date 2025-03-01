@@ -41,7 +41,7 @@
                     <hr class="mx-5 shadow-2xl bg-transparent rounded-r-xl rounded-l-xl" />
                     <li class="p-4 mx-2">
                         <div class="ml-16 md:ml-14">
-                            <a href="">
+                            <a href="{{ route('project') }}">
                                 <h1 class="text-gray-500 hover:text-black text-base font-normal">Projects</h1>
                             </a>
                         </div>

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Project;
-use App\Models\User;
+use App\Models\Subproduct;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -24,21 +24,17 @@ class PagesController extends Controller
 
         $query = $request->input('search');
 
-        //POST SEARCH
-        // $postResults = Post::where('judul', 'LIKE', '%' . $query . '%')
-        //     ->orWhere('content', 'LIKE', '%' . $query . '%')
-        //     ->get();
+        //SUB SEARCH
+        $subResults = Subproduct::where('subproduct', 'LIKE', '%' . $query . '%')
+            ->orWhere('desc1', 'LIKE', '%' . $query . '%')
+            ->get();
 
-        //PROJECT SEARCH
-        // $projectResults = Project::where('project', 'LIKE', '%' . $query . '%')
-        //     ->orWhere('description', 'LIKE', '%' . $query . '%')
-        //     ->get();
 
         //USER SEARCH
-        // $userResults = User::where('name', 'LIKE', '%' . $query . '%')
-        //     ->orWhere('email', 'LIKE', '%' . $query . '%')
-        //     ->get();
+        $proResults = Project::where('project', 'LIKE', '%' . $query . '%')
+            ->orWhere('desc1', 'LIKE', '%' . $query . '%')
+            ->get();
 
-        // return view('search', compact('postResults', 'projectResults', 'userResults'));
+        return view('search', compact('subResults', 'proResults'));
     }
 }

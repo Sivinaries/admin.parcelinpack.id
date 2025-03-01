@@ -5,8 +5,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TagController;
 use App\Http\Controllers\SubTagController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\KategoriController;
 use App\Http\Controllers\SubproductController;
+
+//PROJECT
+Route::get('/projects', [ProjectController::class, 'index']);
+Route::get('/project/{id}', [ProjectController::class, 'show']);
 
 //KATEGORI
 Route::get('/kategoris', [KategoriController::class, 'index']);
@@ -27,7 +32,6 @@ Route::get('/subproduct/{id}', [SubproductController::class, 'show']);
 //SUBTAG
 Route::get('/subtags', [SubTagController::class, 'index']);
 Route::get('/subtag/{id}', [SubTagController::class, 'show']);
-
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
