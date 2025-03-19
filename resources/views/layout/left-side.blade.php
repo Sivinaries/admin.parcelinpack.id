@@ -31,7 +31,26 @@
                     <li class="p-4 mx-2">
                         <div class="flex space-x-4">
                             <div class="bg-amber-600 p-2 rounded-xl">
-                                <i class="material-icons">settings</i>
+                                <i class="material-icons">rss_feed</i>
+                            </div>
+                            <div class="my-auto">
+                                <h1 class="text-black text-base font-normal">Blog</h1>
+                            </div>
+                        </div>
+                    </li>
+                    <hr class="mx-5 shadow-2xl bg-transparent rounded-r-xl rounded-l-xl" />
+                    <li class="p-4 mx-2">
+                        <div class="ml-16 md:ml-14">
+                            <a href="{{ route('project') }}">
+                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Posts</h1>
+                            </a>
+                        </div>
+                    </li>
+
+                    <li class="p-4 mx-2">
+                        <div class="flex space-x-4">
+                            <div class="bg-amber-600 p-2 rounded-xl">
+                                <i class="material-icons">work</i>
                             </div>
                             <div class="my-auto">
                                 <h1 class="text-black text-base font-normal">Portfolio</h1>
@@ -49,7 +68,7 @@
                     <li class="p-4 mx-2">
                         <div class="flex space-x-4">
                             <div class="bg-amber-600 p-2 rounded-xl">
-                                <i class="material-icons">settings</i>
+                                <i class="material-icons">draw</i>
                             </div>
                             <div class="my-auto">
                                 <h1 class="text-black text-base font-normal">Layanan</h1>

@@ -24,6 +24,61 @@
                     <div class="space-y-8">
                         <div class="space-y-2">
                             <div>
+                                <h1 class="font-extrabold text-3xl">Projects</h1>
+                            </div>
+                            <div>
+                                <div class="p-2">
+                                    <div class="overflow-auto">
+                                        <table id="proTable" class="bg-gray-50 border-2">
+                                            <thead class="w-full">
+                                                <th>No</th>
+                                                <th>Date</th>
+                                                <th>Project</th>
+                                                <th>Desc</th>
+                                                <th>Action</th>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $no = 1;
+                                                @endphp
+                                                @foreach ($proResults as $item)
+                                                    <tr class="border-2">
+                                                        <td>{{ $no++ }}</td>
+                                                        <td>{{ $item->created_at }}</td>
+                                                        <td>{{ $item->project }}</td>
+                                                        <td>{{ $item->desc1 }}</td>
+                                                        <td class="flex gap-2">
+                                                            <div class="p-2 px-10 w-full bg-blue-500 rounded-xl">
+                                                                <a
+                                                                    href="{{ route('editproject', ['id' => $item->id]) }}">
+                                                                    <h1
+                                                                        class=" text-white hover:text-black  text-center">
+                                                                        Edit</h1>
+                                                                </a>
+                                                            </div>
+                                                            @if (auth()->user()->level == 'Admin')
+                                                                <div
+                                                                    class="p-2 px-10 w-full  rounded-xl black bg-red-500">
+                                                                    <form class=" text-white hover:text- text-center"
+                                                                        method="post"
+                                                                        action="{{ route('destroyproject', ['id' => $item->id]) }}">
+                                                                        @csrf
+                                                                        @method('delete')
+                                                                        <button type="submit">Delete</button>
+                                                                    </form>
+                                                                </div>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div>
                                 <h1 class="font-extrabold text-3xl">Sub Product</h1>
                             </div>
                             <div>
@@ -88,61 +143,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="space-y-2">
-                            <div>
-                                <h1 class="font-extrabold text-3xl">Projects</h1>
-                            </div>
-                            <div>
-                                <div class="p-2">
-                                    <div class="overflow-auto">
-                                        <table id="proTable" class="bg-gray-50 border-2">
-                                            <thead class="w-full">
-                                                <th>No</th>
-                                                <th>Date</th>
-                                                <th>Project</th>
-                                                <th>Desc</th>
-                                                <th>Action</th>
-                                            </thead>
-                                            <tbody>
-                                                @php
-                                                    $no = 1;
-                                                @endphp
-                                                @foreach ($proResults as $item)
-                                                    <tr class="border-2">
-                                                        <td>{{ $no++ }}</td>
-                                                        <td>{{ $item->created_at }}</td>
-                                                        <td>{{ $item->project }}</td>
-                                                        <td>{{ $item->desc1 }}</td>
-                                                        <td class="flex gap-2">
-                                                            <div class="p-2 px-10 w-full bg-blue-500 rounded-xl">
-                                                                <a
-                                                                    href="{{ route('editproject', ['id' => $item->id]) }}">
-                                                                    <h1
-                                                                        class=" text-white hover:text-black  text-center">
-                                                                        Edit</h1>
-                                                                </a>
-                                                            </div>
-                                                            @if (auth()->user()->level == 'Admin')
-                                                                <div
-                                                                    class="p-2 px-10 w-full  rounded-xl black bg-red-500">
-                                                                    <form class=" text-white hover:text- text-center"
-                                                                        method="post"
-                                                                        action="{{ route('destroyproject', ['id' => $item->id]) }}">
-                                                                        @csrf
-                                                                        @method('delete')
-                                                                        <button type="submit">Delete</button>
-                                                                    </form>
-                                                                </div>
-                                                            @endif
-                                                        </td>
-                                                    </tr>
-                                                @endforeach
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+
                     </div>
                 </div>
             </div>
