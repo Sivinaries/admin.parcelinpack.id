@@ -33,6 +33,13 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::get('/setting', [PagesController::class, 'setting'])->name('setting');
     Route::get('/profil', [PagesController::class, 'profil'])->name('profil');
     Route::get('/search', [PagesController::class, 'search'])->name('search');
+    //POST
+    Route::get('/post', [PostController::class, 'index'])->name('post');
+    Route::get('/addpost', [PostController::class, 'create'])->name('addpost');
+    Route::post('/createpost', [PostController::class, 'store'])->name('createpost');
+    Route::get('/editpost/{id}', [PostController::class, 'edit'])->name('editpost');
+    Route::put('/updatepost/{id}', [PostController::class, 'update'])->name('updatepost');
+    Route::delete(uri: '/destroypost/{id}', action: [PostController::class, 'destroy'])->name('destroypost');
     //PROJECT
     Route::get('/project', [ProjectController::class, 'index'])->name('project');
     Route::get('/addproject', [ProjectController::class, 'create'])->name('addproject');

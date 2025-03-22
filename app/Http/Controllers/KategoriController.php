@@ -64,8 +64,12 @@ class KategoriController extends Controller
 
         $kategoriModel = Kategori::findOrFail($id);
 
+        // Jika ada gambar baru diunggah, simpan dan update
         if ($request->hasFile('img')) {
-            $kategori['img'] = $request->file('img')->storeAs('kategoris', $request->file('img')->getClientOriginalName(), 'public');
+            $imagePath = $request->file('img')->storeAs('kategoris', $request->file('img')->getClientOriginalName(), 'public');
+            $kategori['img'] = $imagePath;
+        } else {
+            $kategori['img'] = $kategoriModel->img;
         }
 
         Cache::forget('kategoris');

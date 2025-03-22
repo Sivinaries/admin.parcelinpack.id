@@ -1,5 +1,15 @@
-<nav id="navbar" class="font-poppins mx-2 xl:mx-4 rounded-xl bg-white bg-opacity-90 sticky top-0 z-40 transform transition-transform duration-300">
+<nav id="navbar"
+    class="font-poppins mx-2 xl:mx-4 rounded-xl bg-white bg-opacity-90 sticky top-0 z-40 transform transition-transform duration-300 ">
     <div class="flex justify-around md:justify-end p-4 space-x-2 md:space-x-4">
+                <!-- Date and Clock -->
+                <div class="hidden md:block my-auto">
+                    <div>
+                        <h1 class="text-lg font-extrabold text-center" id="current-time"></h1>
+                    </div>
+                    <div>
+                        <h1 class="text-base font-extralight" id="current-date"></h1>
+                    </div>
+                </div>        
         <div class="flex justify-end">
             <div class="my-auto">
                 <form method="get" action="{{ route('search') }}">
@@ -13,18 +23,20 @@
                 </form>
             </div>
         </div>
+
         <a href="{{ route('profil') }}" class="my-auto">
-        <div class="flex space-x-4">
-            <div class="my-auto">
-                <h1 class="text-sm font-base">
-                    {{ auth()->user()->name }}
-                </h1>
+            <div class="flex space-x-4">
+                <div class="my-auto">
+                    <h1 class="text-sm font-base">
+                        {{ auth()->user()->name }}
+                    </h1>
+                </div>
+                <div class="my-auto">
+                    <i class="material-icons">person</i>
+                </div>
             </div>
-            <div class="my-auto">
-                <i class="material-icons">person</i>
-            </div>
-        </div>
-    </a>
+        </a>
+
         <div class="md:hidden flex justify-end items-end my-auto">
             <button id="toggle-button" class="transform transition-transform duration-300">
                 <!-- Hamburger icon -->
@@ -45,6 +57,27 @@
 </nav>
 
 <script>
+    function updateClock() {
+        const now = new Date();
+        const date = now.toLocaleDateString('id-ID', {
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        });
+        const time = now.toLocaleTimeString('id-ID', {
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit'
+        });
+
+        document.getElementById('current-date').textContent = date;
+        document.getElementById('current-time').textContent = time;
+    }
+
+    setInterval(updateClock, 1000);
+    updateClock();
+
     document.getElementById('toggle-button').addEventListener('click', function() {
         const sidebar = document.getElementById('sidebar');
         const menuOpen = document.getElementById('menu-open');
@@ -56,8 +89,5 @@
         // Toggle between open and close icons
         menuOpen.classList.toggle('hidden');
         menuClose.classList.toggle('hidden');
-
-        // Add rotation animation
-        menuOpen.classList.toggle('rotate');
     });
 </script>

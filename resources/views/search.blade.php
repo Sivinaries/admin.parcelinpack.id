@@ -24,7 +24,62 @@
                     <div class="space-y-8">
                         <div class="space-y-2">
                             <div>
-                                <h1 class="font-extrabold text-3xl">Projects</h1>
+                                <h1 class="font-extrabold text-3xl">Post</h1>
+                            </div>
+                            <div>
+                                <div class="p-2">
+                                    <div class="overflow-auto">
+                                        <table id="postTable" class="bg-gray-50 border-2">
+                                            <thead class="w-full">
+                                                <th>No</th>
+                                                <th>Date</th>
+                                                <th>Post</th>
+                                                <th>Img</th>
+                                                <th>Desc</th>
+                                                <th>Action</th>
+                                            </thead>
+                                            <tbody>
+                                                @php
+                                                    $no = 1;
+                                                @endphp
+                                                @foreach ($postResults as $item)
+                                                    <tr class="border-2">
+                                                        <td>{{ $no++ }}</td>
+                                                        <td>{{ $item->created_at }}</td>
+                                                        <td>{{ $item->post }}</td>
+                                                        <td>
+                                                            <img src="{{ asset('storage/' . $item->img) }}" alt="Gambar" class="w-64 h-44 mx-auto ">
+                                                        </td>
+                                                        <td>{{ $item->desc1 }}</td>
+                                                        <td class="flex gap-2">
+                                                            <div class="p-2 px-10 w-full bg-blue-500 rounded-xl">
+                                                                <a href="{{ route('editpost', ['id' => $item->id]) }}">
+                                                                    <h1 class=" text-white hover:text-black  text-center">
+                                                                        Edit</h1>
+                                                                </a>
+                                                            </div>
+                                                            @if (auth()->user()->level == 'Admin')
+                                                                <div class="p-2 px-10 w-full  rounded-xl black bg-red-500">
+                                                                    <form class=" text-white hover:text- text-center" method="post"
+                                                                        action="{{ route('destroypost', ['id' => $item->id]) }}">
+                                                                        @csrf
+                                                                        @method('delete')
+                                                                        <button type="submit">Delete</button>
+                                                                    </form>
+                                                                </div>
+                                                            @endif
+                                                        </td>
+                                                    </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                            </div>
+                        </div>
+                        <div class="space-y-2">
+                            <div>
+                                <h1 class="font-extrabold text-3xl">Project</h1>
                             </div>
                             <div>
                                 <div class="p-2">
@@ -153,6 +208,18 @@
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
     <script src="//cdn.datatables.net/2.0.2/js/dataTables.min.js"></script>
     <script>
+        $(document).ready(function() {
+            let table = new DataTable('#postTable', {
+                columnDefs: [{
+                    targets: 1, // Index of the 'Date' column
+                    render: function(data, type, row) {
+                        // Assuming the date is in 'YYYY-MM-DD HH:MM:SS' format
+                        var date = new Date(data);
+                        return date.toLocaleDateString(); // Format the date as needed
+                    },
+                }, ],
+            });
+        });
         $(document).ready(function() {
             let table = new DataTable('#subTable', {
                 columnDefs: [{

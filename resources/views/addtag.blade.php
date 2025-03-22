@@ -20,21 +20,38 @@
                     <h1 class="font-extrabold text-3xl">Add tag</h1>
                 </div>
                 <div class="p-6">
+
+                    <!-- Global Error Handling -->
+                    @if ($errors->any())
+                        <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative mb-4">
+                            <strong>Error!</strong> Ada beberapa masalah dengan input Anda:
+                            <ul class="mt-2">
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
+
                     <form class="space-y-3" method="post" action="{{ route('createtag') }}" enctype="multipart/form-data">
                         @csrf
                         @method('post')
+
+                        <!-- Nama Tag -->
                         <div class="space-y-2">
                             <label class="font-semibold text-black">Nama tag:</label>
                             <input type="text"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
-                                id="tag" name="tag" placeholder="Tag" required>
+                                id="tag" name="tag" value="{{ old('tag') }}" placeholder="Tag" required>
                         </div>
+
                         <button type="submit"
-                            class="bg-blue-500  text-white p-4 w-full hover:text-black rounded-lg">Submit</button>
+                            class="bg-blue-500 text-white p-4 w-full hover:text-black rounded-lg">Submit</button>
                     </form>
                 </div>
             </div>
         </div>
     </main>
 </body>
+
 </html>

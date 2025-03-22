@@ -19,10 +19,10 @@
             <div class='w-full rounded-xl bg-white h-fit mx-auto'>
                 <div class="p-3">
                     <div class="flex justify-between">
-                        <h1 class="font-extrabold text-3xl">Kategori</h1>
+                        <h1 class="font-extrabold text-3xl">Category</h1>
                         <a class="p-2 bg-blue-500 rounded-xl text-white hover:text-black text-center px-10"
                             href="{{ route('addkategori') }}">Add
-                            kategori</a>
+                            category</a>
                     </div>
                 </div>
                 <div class="p-2">

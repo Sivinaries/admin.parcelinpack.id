@@ -41,8 +41,8 @@
                     <hr class="mx-5 shadow-2xl bg-transparent rounded-r-xl rounded-l-xl" />
                     <li class="p-4 mx-2">
                         <div class="ml-16 md:ml-14">
-                            <a href="{{ route('project') }}">
-                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Posts</h1>
+                            <a href="{{ route('post') }}">
+                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Post</h1>
                             </a>
                         </div>
                     </li>
@@ -61,7 +61,7 @@
                     <li class="p-4 mx-2">
                         <div class="ml-16 md:ml-14">
                             <a href="{{ route('project') }}">
-                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Projects</h1>
+                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Project</h1>
                             </a>
                         </div>
                     </li>
@@ -71,7 +71,7 @@
                                 <i class="material-icons">draw</i>
                             </div>
                             <div class="my-auto">
-                                <h1 class="text-black text-base font-normal">Layanan</h1>
+                                <h1 class="text-black text-base font-normal">Service</h1>
                             </div>
                         </div>
                     </li>
@@ -79,14 +79,14 @@
                     <li class="p-4 mx-2">
                         <div class="ml-16 md:ml-14">
                             <a href="{{ route('kategori') }}">
-                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Kategori</h1>
+                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Category</h1>
                             </a>
                         </div>
                     </li>
                     <li class="p-4 mx-2">
                         <div class="ml-16 md:ml-14">
                             <a href="{{ route('product') }}">
-                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Produk</h1>
+                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Product</h1>
                             </a>
                         </div>
                     </li>
@@ -100,7 +100,7 @@
                     <li class="p-4 mx-2">
                         <div class="ml-16 md:ml-14">
                             <a href="{{ route('subproduct') }}">
-                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Sub Produk</h1>
+                                <h1 class="text-gray-500 hover:text-black text-base font-normal">Sub Product</h1>
                             </a>
                         </div>
                     </li>
