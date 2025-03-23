@@ -38,6 +38,7 @@
                         @csrf
                         @method('post')
 
+                        <div class="grid grid-cols-2 gap-4">
                         <!-- Nama Category -->
                         <div class="space-y-2">
                             <label class="font-semibold text-black">Nama category:</label>
@@ -57,7 +58,7 @@
                                 class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
                                 id="product" name="product" value="{{ old('product') }}" placeholder="Product" required>
                         </div>
-
+                    </div>
                         <!-- Gambar -->
                         <div class="space-y-2">
                             <label class="font-semibold text-black">Gambar:</label>
