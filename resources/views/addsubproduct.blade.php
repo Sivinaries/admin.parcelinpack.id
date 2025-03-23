@@ -66,7 +66,8 @@
                                 <input type="number"
                                     class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
                                     id="price" name="price" placeholder="1.XX.XXX"
-                                    value="{{ old('price') }}" required>
+                                    value="{{ old('price') }}" required oninput="formatPrice()">
+                                <p id="formatted-price" class="text-gray-700 text-sm mt-1"></p>
                             </div>
                             <div class="space-y-2">
                                 <label class="font-semibold text-black">Min:</label>
@@ -106,5 +107,16 @@
         </div>
     </main>
 </body>
+<script>
+    function formatPrice() {
+        let priceInput = document.getElementById("price").value;
+        let formattedPrice = new Intl.NumberFormat("id-ID", {
+            style: "currency",
+            currency: "IDR"
+        }).format(priceInput);
+        
+        document.getElementById("formatted-price").innerText = formattedPrice;
+    }
+</script>
 
 </html>
