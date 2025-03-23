@@ -4,6 +4,7 @@
 <head>
     <title>Edit Post</title>
     @include('layout.head')
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 </head>
 
 <body class="bg-gray-50">
@@ -78,5 +79,10 @@
         </div>
     </main>
 </body>
+<script>
+    CKEDITOR.replace( 'desc1' );
+    CKEDITOR.replace( 'desc2' );
+    CKEDITOR.replace( 'desc3' );
+</script>
 
 </html>

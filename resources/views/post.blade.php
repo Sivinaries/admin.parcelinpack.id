@@ -35,7 +35,6 @@
                                 <th>Date</th>
                                 <th>Post</th>
                                 <th>Img</th>
-                                <th>Desc</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
@@ -47,10 +46,9 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->post }}</td>
-                                        <td>
+                                        <td class="w-fit">
                                             <img src="{{ asset('storage/' . $item->img) }}" alt="Gambar" class="w-64 h-44 mx-auto ">
                                         </td>
-                                        <td>{{ $item->desc1 }}</td>
                                         <td class="flex gap-2">
                                             <div class="p-2 px-10 w-full bg-blue-500 rounded-xl">
                                                 <a href="{{ route('editpost', ['id' => $item->id]) }}">

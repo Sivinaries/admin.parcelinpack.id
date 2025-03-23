@@ -4,6 +4,7 @@
 <head>
     <title>Add Post</title>
     @include('layout.head')
+    <script src="https://cdn.ckeditor.com/4.22.1/standard/ckeditor.js"></script>
 </head>
 
 <body class="bg-gray-50">
@@ -63,7 +64,7 @@
                         </div>
                         <div class="space-y-2">
                             <label class="font-semibold text-black">Description 3:</label>
-                            <textarea class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full h-44" type='text'
+                            <textarea class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full h-full" type='text'
                                 name="desc3" id="desc3">
                                 {{ old('desc3') }}
                             </textarea>
@@ -76,5 +77,11 @@
         </div>
     </main>
 </body>
+
+<script>
+    CKEDITOR.replace( 'desc1' );
+    CKEDITOR.replace( 'desc2' );
+    CKEDITOR.replace( 'desc3' );
+</script>
 
 </html>

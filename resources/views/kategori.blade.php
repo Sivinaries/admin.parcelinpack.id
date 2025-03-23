@@ -32,7 +32,6 @@
                                 <th>No</th>
                                 <th>Date</th>
                                 <th>Nama</th>
-                                <th>Desc</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
@@ -44,7 +43,6 @@
                                         <td>{{ $no++ }}</td>
                                         <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->kategori }}</td>
-                                        <td>{{ $item->desc }}</td>
                                         <td class="flex gap-2">
                                             <div class="p-2 px-10 w-full bg-blue-500 rounded-xl">
                                                 <a href="{{ route('editkategori', ['id' => $item->id]) }}">

@@ -43,21 +43,21 @@
                                 id="project" name="project" value="{{ old('project') }}" placeholder="Project"
                                 required>
                         </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label class="font-semibold text-black">Gambar 1:</label>
+                                <input type="file"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
+                                    id="img1" name="img1" required>
+                            </div>
 
-                        <div class="space-y-2">
-                            <label class="font-semibold text-black">Gambar 1:</label>
-                            <input type="file"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
-                                id="img1" name="img1" required>
+                            <div class="space-y-2">
+                                <label class="font-semibold text-black">Gambar 2:</label>
+                                <input type="file"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
+                                    id="img2" name="img2" required>
+                            </div>
                         </div>
-
-                        <div class="space-y-2">
-                            <label class="font-semibold text-black">Gambar 2:</label>
-                            <input type="file"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
-                                id="img2" name="img2" required>
-                        </div>
-
                         <div class="space-y-2">
                             <label class="font-semibold text-black">Description 1:</label>
                             <textarea class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full h-44" name="desc1"

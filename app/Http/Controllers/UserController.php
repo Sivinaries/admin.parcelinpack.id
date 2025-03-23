@@ -41,12 +41,16 @@ class UserController extends Controller
         $user->level = $validatedData['level'];
         $user->save();
 
+        Cache::forget('users');
+
         return redirect('/user')->with('success', 'User Berhasil Dibuat !');
     }
 
     public function destroy($id)
     {
         User::destroy($id);
+
+        Cache::forget('users');
 
         return redirect(route('user'))->with('success', 'User Berhasil Dihapus !');
     }

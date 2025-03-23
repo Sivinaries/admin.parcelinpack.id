@@ -2,69 +2,47 @@
 <html lang="en">
 
 <head>
-    <title>Profil</title>
+    <title>Profile</title>
     @include('layout.head')
 </head>
 
 <body class="bg-gray-50">
-    <!-- sidenav  -->
+    <!-- Sidebar -->
     @include('layout.left-side')
-    <!-- end sidenav -->
+
     <main class="md:ml-64 xl:ml-72 2xl:ml-72">
         <!-- Navbar -->
         @include('layout.navbar')
-        <!-- end Navbar -->
         <div class="p-6">
-            <div class=''>
-                <div class="">
-                    <span class="bg-blue-500"></span>
+
+            <div class='w-full rounded-xl bg-white h-fit p-3'>
+                <div class="flex items-center space-x-4">
+                    <img class="w-12 h-12 rounded-full" src="{{ asset('assets/img/logo.png') }}" alt="Profile Picture">
+                    <h1 class="text-xl font-semibold text-gray-900">{{ auth()->user()->name }}</h1>
                 </div>
-                <div
-                    class="">
-                    <div class="">
-                        <div class="my-auto">
-                            <div class="flex space-x-2">
-                                <div>
-                                    <img class="w-10 h-fit" src="{{ asset('assets/img/logo.png') }}" alt="">
-                                </div>
-                                <div class="my-auto">
-                                    <h1 class="">{{ auth()->user()->name }}</h1>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="w-full max-w-full px-3 p-6 mx-auto">
-                    <div
-                        class="relative flex flex-col h-full min-w-0 break-words bg-white border-0 shadow-soft-xl rounded-3xl bg-clip-border">
-                        <div class="p-4 pb-0 mb-0 bg-white border-b-0 rounded-3xl">
-                            <div class="flex items-center w-full max-w-full px-3 shrink-0 md:w-8/12 md:flex-none">
-                                <h6 class="mb-0">Profile Information</h6>
-                            </div>
-                        </div>
-                        <div class="flex-auto p-4">
-                            <hr
-                                class="h-px bg-transparent bg-gradient-to-r from-transparent via-white to-transparent" />
-                            <ul class="flex flex-col pl-0 mb-0 rounded-3xl">
-                                <li
-                                    class="relative block px-4 py-2 pt-0 pl-0 leading-normal bg-white border-0 rounded-3xl text-sm text-inherit">
-                                    <strong class="text-slate-700">Name:</strong> &nbsp; {{ auth()->user()->name }}
-                                </li>
-                                <li
-                                    class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit">
-                                    <strong class="text-slate-700">Email:</strong> &nbsp; {{ auth()->user()->email }}
-                                </li>
-                                <li
-                                    class="relative block px-4 py-2 pl-0 leading-normal bg-white border-0 border-t-0 text-sm text-inherit">
-                                    <strong class="text-slate-700">Level:</strong> &nbsp; {{ auth()->user()->level }}
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
+
+                <div class="mt-6 border-t border-gray-200 pt-4">
+                    <h6 class="text-lg font-semibold text-gray-700">Profile Information</h6>
+                    <ul class="mt-3 space-y-3">
+                        <li class="flex justify-between border-b pb-2">
+                            <strong class="text-gray-600">Name:</strong>
+                            <span class="text-gray-800">{{ auth()->user()->name }}</span>
+                        </li>
+                        <li class="flex justify-between border-b pb-2">
+                            <strong class="text-gray-600">Email:</strong>
+                            <span class="text-gray-800">{{ auth()->user()->email }}</span>
+                        </li>
+                        <li class="flex justify-between">
+                            <strong class="text-gray-600">Level:</strong>
+                            <span class="text-gray-800">{{ auth()->user()->level }}</span>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
     </main>
+
     @include('sweetalert::alert')
 </body>
+
 </html>

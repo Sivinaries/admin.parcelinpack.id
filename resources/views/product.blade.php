@@ -33,7 +33,6 @@
                                 <th>Date</th>
                                 <th>Kategori</th>
                                 <th>Name</th>
-                                <th>Desc</th>
                                 <th>Action</th>
                             </thead>
                             <tbody>
@@ -46,7 +45,6 @@
                                         <td>{{ $item->created_at }}</td>
                                         <td>{{ $item->kategori->kategori }}</td>
                                         <td>{{ $item->product }}</td>
-                                        <td>{{ $item->desc }}</td>
                                         <td class="flex gap-2">
                                             <div class="p-2 px-10 w-full bg-blue-500 rounded-xl">
                                                 <a href="{{ route('editproduct', ['id' => $item->id]) }}">

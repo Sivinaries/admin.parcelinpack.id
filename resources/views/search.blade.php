@@ -35,7 +35,6 @@
                                                 <th>Date</th>
                                                 <th>Post</th>
                                                 <th>Img</th>
-                                                <th>Desc</th>
                                                 <th>Action</th>
                                             </thead>
                                             <tbody>
@@ -50,7 +49,6 @@
                                                         <td>
                                                             <img src="{{ asset('storage/' . $item->img) }}" alt="Gambar" class="w-64 h-44 mx-auto ">
                                                         </td>
-                                                        <td>{{ $item->desc1 }}</td>
                                                         <td class="flex gap-2">
                                                             <div class="p-2 px-10 w-full bg-blue-500 rounded-xl">
                                                                 <a href="{{ route('editpost', ['id' => $item->id]) }}">
@@ -89,7 +87,6 @@
                                                 <th>No</th>
                                                 <th>Date</th>
                                                 <th>Project</th>
-                                                <th>Desc</th>
                                                 <th>Action</th>
                                             </thead>
                                             <tbody>
@@ -101,7 +98,6 @@
                                                         <td>{{ $no++ }}</td>
                                                         <td>{{ $item->created_at }}</td>
                                                         <td>{{ $item->project }}</td>
-                                                        <td>{{ $item->desc1 }}</td>
                                                         <td class="flex gap-2">
                                                             <div class="p-2 px-10 w-full bg-blue-500 rounded-xl">
                                                                 <a

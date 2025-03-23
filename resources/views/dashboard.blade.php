@@ -16,7 +16,7 @@
         <!-- end Navbar -->
         <div class="p-6 space-y-2">
             <div class='w-full h-fit mx-auto'>
-                <div class="grid grid-cols-1 md:grid-cols-1 xl:grid-cols-3 lg:grid-cols-3 gap-4 p-2">
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
                     <!-- card1 -->
                     <a href="{{ route('subproduct') }}">
                         <div class="bg-blue-500 p-8 rounded-lg shadow-xl">
@@ -36,6 +36,13 @@
                         <div class="bg-yellow-500 p-8 rounded-lg shadow-xl">
                             <h1 class="text-2xl text-white font-bold">{{ $total_post }}</h1>
                             <h1 class="text-xl font-extrabold text-white text-right">Posts</h1>
+                        </div>
+                    </a>
+                    <!-- card2 -->
+                    <a href="{{ route('user') }}">
+                        <div class="bg-green-500 p-8 rounded-lg shadow-xl">
+                            <h1 class="text-2xl text-white font-bold">{{ $total_user }}</h1>
+                            <h1 class="text-xl font-extrabold text-white text-right">Users</h1>
                         </div>
                     </a>
                 </div>
@@ -78,20 +85,22 @@
         // CHART 1
 
         var labels1 = {{ Js::from($labels1) }};
-        var data1 = {{ Js::from($data1) }};
+        var data1Values = {{ Js::from($data1) }};
+
+        var maxData1 = Math.max(...data1Values) + 5; // Tambahkan padding agar tidak menempel di atas
 
         var data1 = {
             labels: labels1,
             datasets: [{
                 label: 'Jumlah Project',
-                data: data1,
+                data: data1Values,
                 borderColor: 'rgb(75, 192, 192)',
                 fill: true,
             }]
         };
 
         var config1 = {
-            type: 'line',
+            type: 'bar',
             data: data1,
             options: {
                 animations: {
@@ -106,7 +115,7 @@
                 scales: {
                     y: {
                         min: 0,
-                        max: 50,
+                        max: maxData1,
                     }
                 }
             }
@@ -120,20 +129,22 @@
         // CHART 2
 
         var labels2 = {{ Js::from($labels2) }};
-        var data2 = {{ Js::from($data2) }};
+        var data2Values = {{ Js::from($data2) }};
+
+        var maxData2 = Math.max(...data2Values) + 5; // Tambahkan padding agar tidak menempel di atas
 
         var data2 = {
             labels: labels2,
             datasets: [{
                 label: 'Jumlah Post',
-                data: data2,
+                data: data2Values,
                 borderColor: 'rgb(75, 192, 192)',
                 fill: true,
             }]
         };
 
         var config2 = {
-            type: 'line',
+            type: 'bar',
             data: data2,
             options: {
                 animations: {
@@ -148,7 +159,7 @@
                 scales: {
                     y: {
                         min: 0,
-                        max: 50,
+                        max: maxData2,
                     }
                 }
             }
@@ -160,15 +171,16 @@
         );
 
         // CHART 3
-
         var labels3 = {{ Js::from($labels3) }};
-        var data3 = {{ Js::from($data3) }};
+        var data3Values = {{ Js::from($data3) }};
+
+        var maxData3 = Math.max(...data3Values) + 5; // Tambahkan padding agar tidak menempel di atas
 
         var data3 = {
             labels: labels3,
             datasets: [{
                 label: 'Jumlah Sub Product',
-                data: data3,
+                data: data3Values,
                 borderColor: 'rgb(75, 192, 192)',
                 fill: true,
             }]
@@ -190,7 +202,7 @@
                 scales: {
                     y: {
                         min: 0,
-                        max: 50,
+                        max: maxData3 // Max dinamis berdasarkan data
                     }
                 }
             }

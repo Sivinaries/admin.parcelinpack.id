@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Post;
 use App\Models\Project;
 use App\Models\Subproduct;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PagesController extends Controller
@@ -19,6 +20,9 @@ class PagesController extends Controller
 
         //TOTAL POST
         $total_post = Post::count();
+
+        //TOTAL USER
+        $total_user = User::where('level', 'Writer')->count();
 
         $projects = Project::selectRaw("COUNT(*) as count, DATE_FORMAT(created_at, '%M') as month_name, MONTH(created_at) as month_number")
             ->whereYear('created_at', date('Y'))
@@ -51,6 +55,7 @@ class PagesController extends Controller
             'total_product' => $total_product,
             'total_post' => $total_post,
             'total_project' => $total_project,
+            'total_user' => $total_user,
             'labels1' => $labels1,
             'data1' => $data1,
             'labels2' => $labels2,

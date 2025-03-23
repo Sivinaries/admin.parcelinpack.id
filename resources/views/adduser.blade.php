@@ -38,47 +38,53 @@
                         @csrf
                         @method('post')
 
-                        <!-- Nama -->
-                        <div class="space-y-2">
-                            <label class="font-semibold text-black">Nama:</label>
-                            <input type="text"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full @error('name') border-red-500 @enderror"
-                                id="name" name="name" placeholder="Nama" value="{{ old('name') }}" required>
-                            @error('name')
-                                <p class="text-red-500 text-sm">{{ $message }}</p>
-                            @enderror
-                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <!-- Nama -->
+                            <div class="space-y-2">
+                                <label class="font-semibold text-black">Nama:</label>
+                                <input type="text"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full @error('name') border-red-500 @enderror"
+                                    id="name" name="name" placeholder="Nama" value="{{ old('name') }}"
+                                    required>
+                                @error('name')
+                                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                                @enderror
+                            </div>
 
-                        <!-- Email -->
-                        <div class="space-y-2">
-                            <label class="font-semibold text-black">Email:</label>
-                            <input type="email"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full @error('email') border-red-500 @enderror"
-                                id="email" name="email" placeholder="Email" value="{{ old('email') }}" required>
-                            @error('email')
-                                <p class="text-red-500 text-sm">{{ $message }}</p>
-                            @enderror
+                            <!-- Email -->
+                            <div class="space-y-2">
+                                <label class="font-semibold text-black">Email:</label>
+                                <input type="email"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full @error('email') border-red-500 @enderror"
+                                    id="email" name="email" placeholder="Email" value="{{ old('email') }}"
+                                    required>
+                                @error('email')
+                                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                                @enderror
+                            </div>
                         </div>
+                        <div class="grid grid-cols-2 gap-4">
 
-                        <!-- Password -->
-                        <div class="space-y-2">
-                            <label class="font-semibold text-black">Password:</label>
-                            <input type="password"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full @error('password') border-red-500 @enderror"
-                                id="password" name="password" placeholder="Password" required>
-                            @error('password')
-                                <p class="text-red-500 text-sm">{{ $message }}</p>
-                            @enderror
+                            <!-- Password -->
+                            <div class="space-y-2">
+                                <label class="font-semibold text-black">Password:</label>
+                                <input type="password"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full @error('password') border-red-500 @enderror"
+                                    id="password" name="password" placeholder="Password" required>
+                                @error('password')
+                                    <p class="text-red-500 text-sm">{{ $message }}</p>
+                                @enderror
+                            </div>
+
+                            <!-- Password Confirmation -->
+                            <div class="space-y-2">
+                                <label class="font-semibold text-black">Password Confirmation:</label>
+                                <input type="password"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
+                                    id="password_confirmation" name="password_confirmation"
+                                    placeholder="Password Confirmation" required>
+                            </div>
                         </div>
-
-                        <!-- Password Confirmation -->
-                        <div class="space-y-2">
-                            <label class="font-semibold text-black">Password Confirmation:</label>
-                            <input type="password"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 p-2 rounded-lg w-full"
-                                id="password_confirmation" name="password_confirmation" placeholder="Password Confirmation" required>
-                        </div>
-
                         <!-- Level -->
                         <div class="space-y-2">
                             <label class="font-semibold text-black">Level:</label>
@@ -101,4 +107,5 @@
         </div>
     </main>
 </body>
+
 </html>
