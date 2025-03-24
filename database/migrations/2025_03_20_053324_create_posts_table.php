@@ -12,9 +12,9 @@ return new class extends Migration
             $table->id();
             $table->string('post');
             $table->string('img');
-            $table->string('desc1');
-            $table->string('desc2');
-            $table->string('desc3');
+            $table->longText('desc1');
+            $table->longText('desc2');
+            $table->longText('desc3');
             $table->timestamps();
         });
     }

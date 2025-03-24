@@ -57,7 +57,7 @@ class SubproductController extends Controller
 
     public function show($id)
     {
-        $subproduct = Subproduct::with(['product'])->findOrFail($id);
+        $subproduct = Subproduct::with(['product', 'tags'])->findOrFail($id);
         return response()->json(['subproduct' => $subproduct], 200);
     }
 
